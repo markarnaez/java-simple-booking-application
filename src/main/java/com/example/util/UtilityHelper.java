@@ -57,10 +57,10 @@ public class UtilityHelper {
         try {
             int index = Integer.parseInt(choice);
             if (!(index >= 1 && index <= menu.length)) {
-                System.out.println("Invalid choice. Please select 1 to " + menu.length);
-                return false;
+                throw new IllegalArgumentException();
             }
         } catch (Exception e) {
+            System.out.println("Invalid choice. Please select from 1 to " + menu.length);
             return false;
         }
         return true;
