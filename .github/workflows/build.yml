@@ -25,5 +25,5 @@ jobs:
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v2
         with:
-          name: my-jar
+          name: simple-booking-application
           path: target/*.jar
