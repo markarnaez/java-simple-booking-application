@@ -90,7 +90,7 @@ public class Show {
 
     public void printShowInfo() {
         System.out.println("Show Number         : " + this.getId());
-        System.out.println("Show Title               : " + this.getTitle());
+        System.out.println("Show Title          : " + this.getTitle());
         System.out.println("Seat Size           : " + this.seatManager.getSeatsSize());
         System.out.println("Cancellation Window : " + this.getCancellationWindow() + " minutes");
         displaySeatingArrangement();
