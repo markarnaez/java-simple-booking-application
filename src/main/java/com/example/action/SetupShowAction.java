@@ -34,7 +34,7 @@ public class SetupShowAction implements UserAction{
 
         scanner.nextLine();
         try {
-            if (showManager.getShow(showNumber) == null) {
+            if (showManager.showExists(showNumber)) {
                 SeatManager seatManager = new SeatManager(rowNumber, seatsPerRow);
                 Show showEntry = new Show(showNumber, showTitle, seatManager, cancellationWindow);
                 showManager.addShow(showEntry);
