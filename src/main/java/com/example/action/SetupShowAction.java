@@ -34,9 +34,13 @@ public class SetupShowAction implements UserAction{
 
         scanner.nextLine();
         try {
-            SeatManager seatManager = new SeatManager(rowNumber, seatsPerRow);
-            Show showEntry = new Show(showNumber, showTitle, seatManager, cancellationWindow);
-            showManager.addShow(showEntry);
+            if (showManager.getShow(showNumber) == null) {
+                SeatManager seatManager = new SeatManager(rowNumber, seatsPerRow);
+                Show showEntry = new Show(showNumber, showTitle, seatManager, cancellationWindow);
+                showManager.addShow(showEntry);
+            } else {
+                System.out.println("The show you are trying to add is already existing.");
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("An error occurred while creating the show, please try again.");
