@@ -1,8 +1,12 @@
-package com.example;
+package com.example.factory;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
+
+import com.example.action.*;
+import com.example.manager.ShowManager;
+import com.example.model.User;
 
 public class BuyerActionsFactory implements ActionsFactory {
     private Map<String, Supplier<UserAction>> actionMap;

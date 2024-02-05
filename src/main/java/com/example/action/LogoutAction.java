@@ -1,6 +1,8 @@
-package com.example;
+package com.example.action;
 
 import java.util.Scanner;
+
+import com.example.model.User;
 
 public class LogoutAction implements UserAction{
 

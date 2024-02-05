@@ -1,8 +1,10 @@
-package com.example;
+package com.example.manager;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.example.model.BookingInfo;
 
 public class BookingManager {
     private Map<String, Map<String, BookingInfo>> bookingsByShow;

@@ -1,6 +1,9 @@
-package com.example;
+package com.example.user;
 
 import java.io.Console;
+
+import com.example.manager.ShowManager;
+import com.example.model.User;
 
 public class BuyerUser extends User {
     private static final String[] BUYER_MENU = {

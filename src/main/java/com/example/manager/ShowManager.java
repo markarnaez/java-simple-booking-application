@@ -1,7 +1,12 @@
-package com.example;
+package com.example.manager;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import com.example.model.BookingInfo;
+import com.example.model.Show;
+import com.example.model.User;
+import com.example.util.UtilityHelper;
 
 public class ShowManager {
     private Map<String, Show> showsLibrary;

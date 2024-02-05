@@ -1,6 +1,9 @@
-package com.example;
+package com.example.action;
 
 import java.util.Scanner;
+
+import com.example.manager.ShowManager;
+import com.example.model.Show;
 
 public class ViewShowAction implements UserAction {
     protected ShowManager showManager;

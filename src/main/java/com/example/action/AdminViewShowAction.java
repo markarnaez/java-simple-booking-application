@@ -1,6 +1,10 @@
-package com.example;
+package com.example.action;
 
 import java.util.Map;
+
+import com.example.manager.ShowManager;
+import com.example.model.BookingInfo;
+import com.example.model.Show;
 
 public class AdminViewShowAction extends ViewShowAction {
 

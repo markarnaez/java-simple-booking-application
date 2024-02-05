@@ -1,4 +1,4 @@
-package com.example;
+package com.example.factory;
 
 import java.util.Map;
 import java.util.function.Supplier;

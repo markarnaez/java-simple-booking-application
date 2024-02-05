@@ -1,7 +1,10 @@
-package com.example;
+package com.example.user;
 
 import java.io.Console;
 import java.util.Arrays;
+
+import com.example.manager.ShowManager;
+import com.example.model.User;
 
 public class AdminUser extends User {
 
@@ -13,7 +16,7 @@ public class AdminUser extends User {
             "View show",
             "Logout" };
 
-    protected AdminUser(ShowManager showManager) {
+    public AdminUser(ShowManager showManager) {
         super(showManager);
         this.menu = ADMIN_MENU;
     }

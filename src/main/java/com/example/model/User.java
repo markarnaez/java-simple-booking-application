@@ -1,4 +1,7 @@
-package com.example;
+package com.example.model;
+
+import com.example.manager.ShowManager;
+
 public abstract class User {
     protected ShowManager showManager;
     protected String username;
@@ -11,15 +14,15 @@ public abstract class User {
         this.isLoggedIn = true;
     }
 
-    protected void setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    protected String getUsername() {
+    public String getUsername() {
         return this.username;
     }
 
-    protected void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

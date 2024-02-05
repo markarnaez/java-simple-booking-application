@@ -1,4 +1,6 @@
-package com.example;
+package com.example.factory;
+
+import com.example.manager.ShowManager;
 
 public class UserFactory {
     public User createUser(UserTypeEnum userType, ShowManager showManager) {

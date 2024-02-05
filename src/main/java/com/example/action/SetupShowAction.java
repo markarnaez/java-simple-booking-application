@@ -1,6 +1,10 @@
-package com.example;
+package com.example.action;
 
 import java.util.Scanner;
+
+import com.example.manager.SeatManager;
+import com.example.manager.ShowManager;
+import com.example.model.Show;
 
 public class SetupShowAction implements UserAction{
     private ShowManager showManager;

@@ -1,7 +1,9 @@
-package com.example;
+package com.example.manager;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.model.Seat;
 
 public class SeatManager {
     private List<Seat> seats;

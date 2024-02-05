@@ -1,6 +1,8 @@
-package com.example;
+package com.example.action;
 
 import java.util.Scanner;
+
+import com.example.manager.ShowManager;
 
 public class DisplayAllShowsAction implements UserAction {
     private ShowManager showManager;

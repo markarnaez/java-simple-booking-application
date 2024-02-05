@@ -1,4 +1,4 @@
-package com.example;
+package com.example.user;
 
 public enum UserTypeEnum {
     ADMIN,
