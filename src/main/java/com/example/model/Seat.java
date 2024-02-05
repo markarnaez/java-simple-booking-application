@@ -12,14 +12,14 @@ public class Seat {
     }
 
     public int getRow() {
-		return row;
-	}
+        return row;
+    }
 
     public int getColumn() {
-		return column;
-	}
+        return column;
+    }
 
-	public boolean isBooked() {
+    public boolean isBooked() {
         return booked;
     }
 

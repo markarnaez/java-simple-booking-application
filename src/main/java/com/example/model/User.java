@@ -32,11 +32,11 @@ public abstract class User {
 
     public abstract boolean login();
 
-    public void logout(){
+    public void logout() {
         this.isLoggedIn = false;
     }
 
-    public String[] getMenu(){
+    public String[] getMenu() {
         return menu;
     }
 }

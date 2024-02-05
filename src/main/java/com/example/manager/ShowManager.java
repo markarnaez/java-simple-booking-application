@@ -73,10 +73,10 @@ public class ShowManager {
 
         if (selectedShow != null && username != null) {
             BookingInfo bookingInfo = selectedShow.getAllBookings().get(username);
-            if (bookingInfo != null && bookingInfo.getTicketNumber().equals(ticketNumber)){
+            if (bookingInfo != null && bookingInfo.getTicketNumber().equals(ticketNumber)) {
                 selectedShow.cancelBookedSeats(username);
             } else {
-                System.out.println("Booking not found for this ticket " +  ticketNumber);
+                System.out.println("Booking not found for this ticket " + ticketNumber);
             }
         } else {
             System.out.println("Show not found for this ticket " + ticketNumber);

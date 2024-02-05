@@ -18,8 +18,8 @@ public class ViewShowAction implements UserAction {
         System.out.println("--------------------------------");
         System.out.print("Enter Show Number: ");
         String selectedShowNumber = scanner.nextLine();
-        
-        if (showManager.showExists(selectedShowNumber)){
+
+        if (showManager.showExists(selectedShowNumber)) {
             Show selectedShow = showManager.getShow(selectedShowNumber);
             selectedShow.printShowInfo();
             displayMoreDetails(selectedShow);
@@ -31,5 +31,5 @@ public class ViewShowAction implements UserAction {
     protected void displayMoreDetails(Show selectedShow) {
         return;
     }
-    
+
 }

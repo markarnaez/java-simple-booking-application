@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import com.example.manager.ShowManager;
 
-public class ListShowsAction implements UserAction{
+public class ListShowsAction implements UserAction {
     private ShowManager showManager;
 
     public ListShowsAction(ShowManager showManager) {
@@ -17,6 +17,5 @@ public class ListShowsAction implements UserAction{
         System.out.println("--------------------------------");
         showManager.displayShowList();
     }
-    
-    
+
 }

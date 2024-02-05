@@ -40,7 +40,7 @@ public class AdminUser extends User {
             System.out.println("Invalid username for Admin. Please try again.");
             return false;
         }
-        
+
         char[] passwordChars = console.readPassword("Enter Admin password: ");
         String inputPassword = new String(passwordChars);
         if (!inputPassword.equals(ADMIN_PASSWORD)) {
@@ -51,7 +51,7 @@ public class AdminUser extends User {
         setUsername(inputUsername);
         setPassword(inputPassword);
         clearPasswordFromMemory(passwordChars);
-        
+
         System.out.println("Login successful!");
         return true;
 

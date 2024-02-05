@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import com.example.model.User;
 
-public class LogoutAction implements UserAction{
+public class LogoutAction implements UserAction {
 
     private User user;
 
@@ -16,5 +16,5 @@ public class LogoutAction implements UserAction{
     public void execute(Scanner scanner) {
         user.logout();
     }
-    
+
 }

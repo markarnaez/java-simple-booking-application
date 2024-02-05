@@ -37,7 +37,6 @@ public class BookingInfo {
                 "User Id : '" + this.userId + '\'' +
                 ", Ticker Number : '" + this.ticketNumber + '\'' +
                 ", Booked Seats : '" + this.seatIdentifier + '\'' +
-                ", Effective Date : '" + this.effectivity + '\''
-                ;
+                ", Effective Date : '" + this.effectivity + '\'';
     }
 }

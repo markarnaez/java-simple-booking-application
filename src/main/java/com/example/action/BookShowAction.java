@@ -30,7 +30,8 @@ public class BookShowAction implements UserAction {
                     throw new IllegalArgumentException("Maximum rows or columns exceeded");
                 }
                 if (showManager.bookShow(selectedShow, selectedSeatsArray)) {
-                    System.out.println(selectedShow.getBookingManager().getBookingInfoForUser(selectedShowNumber,username).toString());
+                    System.out.println(selectedShow.getBookingManager()
+                            .getBookingInfoForUser(selectedShowNumber, username).toString());
                     System.out.println("Booking completed successfully!");
                 } else {
                     System.out.println("There was an error during booking. Please try again.");

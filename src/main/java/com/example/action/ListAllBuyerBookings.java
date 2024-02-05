@@ -9,14 +9,13 @@ import com.example.model.Show;
 import com.example.model.User;
 
 public class ListAllBuyerBookings implements UserAction {
-        private ShowManager showManager;
-        private User user;
+    private ShowManager showManager;
+    private User user;
 
     public ListAllBuyerBookings(ShowManager showManager, User user) {
         this.showManager = showManager;
         this.user = user;
     }
-
 
     @Override
     public void execute(Scanner scanner) {
@@ -31,5 +30,5 @@ public class ListAllBuyerBookings implements UserAction {
             }
         }
     }
-    
+
 }

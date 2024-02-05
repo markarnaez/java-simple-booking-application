@@ -6,7 +6,7 @@ import com.example.manager.SeatManager;
 import com.example.manager.ShowManager;
 import com.example.model.Show;
 
-public class SetupShowAction implements UserAction{
+public class SetupShowAction implements UserAction {
     private ShowManager showManager;
 
     public SetupShowAction(ShowManager showManager) {
@@ -14,7 +14,7 @@ public class SetupShowAction implements UserAction{
     }
 
     @Override
-    public void execute(Scanner scanner){
+    public void execute(Scanner scanner) {
         System.out.println("Setup Show");
         System.out.println("--------------------------------");
         System.out.print("Enter Show Number: ");
@@ -46,5 +46,5 @@ public class SetupShowAction implements UserAction{
             System.out.println("An error occurred while creating the show, please try again.");
         }
     }
-    
+
 }

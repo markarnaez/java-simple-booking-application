@@ -78,7 +78,7 @@ public class SeatManager {
         return null;
     }
 
-    public void clearSeat(int row, int column){
+    public void clearSeat(int row, int column) {
         Seat seat = getSeat(row, column);
         seat.setBooked(false);
     }

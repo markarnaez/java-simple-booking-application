@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class UtilityHelper {
 
-    private UtilityHelper() {}
+    private UtilityHelper() {
+    }
 
     public static String[] showMenu(String[] menu) {
         for (int i = 0; i < menu.length; i++) {
@@ -23,11 +24,11 @@ public class UtilityHelper {
         }
         return choice;
     }
-    
+
     public static int[][] parseSeatNumbers(String[] seatNumbers) {
         int[][] result = new int[seatNumbers.length][2];
         for (int i = 0; i < result.length; i++) {
-            result[i]= parseSeatNumber(seatNumbers[i]);
+            result[i] = parseSeatNumber(seatNumbers[i]);
         }
         return result;
     }

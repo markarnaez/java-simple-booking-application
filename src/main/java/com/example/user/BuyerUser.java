@@ -32,7 +32,7 @@ public class BuyerUser extends User {
         Console console = System.console();
         System.out.print("Enter username (5-digit phone number): ");
         String inputUsername = console.readLine();
-    
+
         if (inputUsername != null && inputUsername.matches("\\d{5}")) {
             setUsername(inputUsername);
             return true;

@@ -19,5 +19,5 @@ public class CancelBookingAction implements UserAction {
         String ticketNumber = scanner.nextLine();
         showManager.cancelShowBooking(ticketNumber);
     }
-    
+
 }

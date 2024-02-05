@@ -19,7 +19,7 @@ public class BookingManager {
         return this.bookingsByShow;
     }
 
-    public Map<String, BookingInfo> getAllBookingsForShow(String showId){
+    public Map<String, BookingInfo> getAllBookingsForShow(String showId) {
         Map<String, BookingInfo> bookings = getBookingsByShow().get(showId);
         return bookings != null ? bookings : new HashMap<>();
     }
@@ -48,7 +48,7 @@ public class BookingManager {
         return null;
     }
 
-    public boolean isTicketValid(String showId, String ticketNumber){
+    public boolean isTicketValid(String showId, String ticketNumber) {
         return ticketCounters.get(showId) <= Integer.valueOf(ticketNumber);
     }
 

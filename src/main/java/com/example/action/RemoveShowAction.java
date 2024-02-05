@@ -25,5 +25,5 @@ public class RemoveShowAction implements UserAction {
             System.out.println("The show you are trying to remove does not exist.");
         }
     }
-    
+
 }

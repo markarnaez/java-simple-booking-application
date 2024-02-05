@@ -14,7 +14,7 @@ public class Show {
     private SeatManager seatManager;
     private BookingManager bookingManager;
     private int cancellationWindow;
-    private static final int MAX_CANCELLATION_WINDOW = 2880; //2days
+    private static final int MAX_CANCELLATION_WINDOW = 2880; // 2days
 
     public Show(String id, String title, SeatManager seatManager, int cancellationWindow) {
         this.id = id;
@@ -50,7 +50,7 @@ public class Show {
 
     public Map<String, BookingInfo> getAllBookings() {
         return bookingManager.getAllBookingsForShow(id);
-    } 
+    }
 
     public boolean bookSeat(int[][] selectedSeats, String username) {
         boolean allBookedSeatsIsAvailable = seatManager.isSeatAvailable(selectedSeats);
@@ -65,7 +65,8 @@ public class Show {
                 }
             }
             seatIdentifier = seatIdentifier.substring(1);
-            bookingManager.addBooking(this.id, username, seatIdentifier, UtilityHelper.getDateXminutesFromNow(cancellationWindow));
+            bookingManager.addBooking(this.id, username, seatIdentifier,
+                    UtilityHelper.getDateXminutesFromNow(cancellationWindow));
         } else {
             System.out.println("One or more selected seats are not available.");
         }
@@ -77,12 +78,12 @@ public class Show {
         return rowLetter + String.valueOf(column + 1);
     }
 
-    public void cancelBookedSeats(String username){
+    public void cancelBookedSeats(String username) {
         BookingInfo info = bookingManager.getBookingInfoForUser(this.getId(), username);
         String bookedSeats = info.getSeatIdentifier();
         Date effectivity = info.getEffectivity();
         if (effectivity.after(new Date())) {
-            int [][] bookedSeatsArray = UtilityHelper.parseSeatNumbers(bookedSeats.split(","));
+            int[][] bookedSeatsArray = UtilityHelper.parseSeatNumbers(bookedSeats.split(","));
             for (int[] bookedSeat : bookedSeatsArray) {
                 seatManager.clearSeat(bookedSeat[0], bookedSeat[1]);
             }
