@@ -32,6 +32,7 @@ public class SetupShowAction implements UserAction{
         System.out.print("Enter Cancellation Window (minutes): ");
         int cancellationWindow = scanner.nextInt();
 
+        scanner.nextLine();
         try {
             SeatManager seatManager = new SeatManager(rowNumber, seatsPerRow);
             Show showEntry = new Show(showNumber, showTitle, seatManager, cancellationWindow);
