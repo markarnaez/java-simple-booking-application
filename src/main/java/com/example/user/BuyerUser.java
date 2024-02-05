@@ -11,6 +11,7 @@ public class BuyerUser extends User {
             "Display show",
             "Book show",
             "Cancel booking",
+            "List bookings",
             "Logout" };
 
     public BuyerUser(ShowManager showManager) {
@@ -29,14 +30,14 @@ public class BuyerUser extends User {
     @Override
     public boolean login() {
         Console console = System.console();
-        System.out.print("Enter username: ");
+        System.out.print("Enter username (5-digit phone number): ");
         String inputUsername = console.readLine();
     
-        if (inputUsername != null && inputUsername.matches("\\d{11}")) {
+        if (inputUsername != null && inputUsername.matches("\\d{5}")) {
             setUsername(inputUsername);
             return true;
         } else {
-            System.out.println("Invalid username format. Username must be an 11-digit number.");
+            System.out.println("Invalid username format. Username must be a 5-digit number.");
             return false;
         }
     }

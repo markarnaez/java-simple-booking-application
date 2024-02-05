@@ -18,7 +18,8 @@ public class BuyerActionsFactory implements ActionsFactory {
         actionMap.put("2", () -> new ViewShowAction(showManager));
         actionMap.put("3", () -> new BookShowAction(showManager));
         actionMap.put("4", () -> new CancelBookingAction(showManager));
-        actionMap.put("5", () -> new LogoutAction(user));
+        actionMap.put("5", () -> new ListAllBuyerBookings(showManager, user));
+        actionMap.put("6", () -> new LogoutAction(user));
     }
 
     @Override
