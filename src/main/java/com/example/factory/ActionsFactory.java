@@ -3,6 +3,8 @@ package com.example.factory;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import com.example.action.UserAction;
+
 public interface ActionsFactory {
     Map<String, Supplier<UserAction>> getActionMap();
 

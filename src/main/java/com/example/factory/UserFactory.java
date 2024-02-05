@@ -1,6 +1,10 @@
 package com.example.factory;
 
 import com.example.manager.ShowManager;
+import com.example.model.User;
+import com.example.user.AdminUser;
+import com.example.user.BuyerUser;
+import com.example.user.UserTypeEnum;
 
 public class UserFactory {
     public User createUser(UserTypeEnum userType, ShowManager showManager) {
