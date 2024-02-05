@@ -45,6 +45,7 @@ public class Main {
                 String action = UtilityHelper.getValidChoice(actionMenu, scanner);
                 UserAction userAction = actionFactory.createAction(action);
                 if (userAction != null) {
+                    UtilityHelper.clearConsole();
                     showManager.setCurrentUser(currentUser);
                     userAction.execute(scanner);
                 }
@@ -56,7 +57,7 @@ public class Main {
 
     private static String[] getLoginMenu() {
         System.out.println("================================================================");
-        System.out.println("Welcome to the Booking Application");
+        System.out.println("Welcome to Test Booking Application");
         System.out.println("================================================================");
         return new String[] { "Log in as Admin", "Log in as Buyer", "Quit" };
     }
@@ -75,7 +76,7 @@ public class Main {
                     actionFactory = new BuyerActionsFactory(showManager, currentUser);
                     return currentUser;
                 case "3":
-                    System.out.println("You are logging out. Goodbye!");
+                    System.out.println("Thank you for using. Goodbye!");
                     isQuit.set(true);
                     break;
                 default:
