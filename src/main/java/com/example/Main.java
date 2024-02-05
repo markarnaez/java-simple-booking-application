@@ -1,68 +1,46 @@
 package com.example;
 
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Main {
-    private static ShowManager showManager;
+    private ShowManager showManager;
+    User currentUser;
+    ActionsFactory actionFactory;
+
+    public Main() {
+        this.showManager = new ShowManager();
+    }
+
     public static void main(String[] args) {
-        showManager = new ShowManager();
+        Main app = new Main();
+        app.run();
+    }
+
+    private void run() {
         Scanner scanner = new Scanner(System.in);
+        UserFactory userFactory = new UserFactory();
 
-        boolean isQuit = false;
-        while (!isQuit) {
-            User user = getLoginUser(scanner);
-            if (user != null) {
-                UtilityHelper.clearConsole();
-                boolean isLogout = false;
-                while (!isLogout) {
-                    String[] actionMenu = showMenu(user.getMenu());
-                    String action = getValidChoice(actionMenu, scanner);
-                    isLogout = user.invokeAction(action);
-                }
-            } else {
-                isQuit = true;
-            }
-        }
-    }
-
-    private static User getLoginUser(Scanner scanner) {
-        User user = null;
-        String[] loginMenu = showMenu(getLoginMenu());
-        String loginType = getValidChoice(loginMenu, scanner);
-
-        switch (loginType) {
-            case "1":
-                user = loginAsAdmin();
-                break;
-            case "2":
-                user = loginAsBuyer();
-                break;
-            case "3":
-                System.out.println("Bye!");
-                return null;
-            default : return null;
-        }
-        return user;
-    }
-
-    private static User loginAsBuyer() {
-        System.out.println("Logging as Buyer");
-        User user = new BuyerUser(showManager);
-        return login(user);
-    }
-
-    private static User loginAsAdmin() {
-        System.out.println("Logging as Admin");
-        User user = new AdminUser(showManager);
-        return login(user);
-    }
-
-    private static User login(User user) {
-        UtilityHelper.clearConsole();
+        AtomicBoolean isQuit = new AtomicBoolean(false);
         while (true) {
-            if (user.login() != null) {
-                return user;
+            while (currentUser == null) {
+                currentUser = getLoginUser(scanner, userFactory, isQuit);
+                if (isQuit.get())
+                    return;
             }
+            UtilityHelper.clearConsole();
+
+            while (currentUser.isLoggedIn()) {
+                String[] actionMenu = UtilityHelper.showMenu(currentUser.getMenu());
+                String action = UtilityHelper.getValidChoice(actionMenu, scanner);
+                UserAction userAction = actionFactory.createAction(action);
+                if (userAction != null) {
+                    showManager.setCurrentUser(currentUser);
+                    userAction.execute(scanner);
+                }
+
+            }
+            currentUser = null;
         }
     }
 
@@ -70,26 +48,32 @@ public class Main {
         System.out.println("================================================================");
         System.out.println("Welcome to the Booking Application");
         System.out.println("================================================================");
-        String[] loginMenu = { "Log in as Admin", "Log in as Buyer", "Quit" };
-        return loginMenu;
+        return new String[] { "Log in as Admin", "Log in as Buyer", "Quit" };
     }
 
-    private static String[] showMenu(String[] menu) {
-        for (int i = 0; i < menu.length; i++) {
-            System.out.println(String.valueOf(i + 1).concat(". ").concat(menu[i]));
+    private User getLoginUser(Scanner scanner, UserFactory userFactory, AtomicBoolean isQuit) {
+        String[] loginMenu = UtilityHelper.showMenu(getLoginMenu());
+        String loginType = UtilityHelper.getValidChoice(loginMenu, scanner);
+        try {
+            switch (loginType) {
+                case "1":
+                    currentUser = userFactory.createUser(UserTypeEnum.ADMIN, showManager);
+                    actionFactory = new AdminActionsFactory(showManager, currentUser);
+                    return currentUser;
+                case "2":
+                    currentUser = userFactory.createUser(UserTypeEnum.BUYER, showManager);
+                    actionFactory = new BuyerActionsFactory(showManager, currentUser);
+                    return currentUser;
+                case "3":
+                    System.out.println("You are logging out. Goodbye!");
+                    isQuit.set(true);
+                    break;
+                default:
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-        System.out.print("Please select an option: ");
-        return menu;
+        return null;
     }
-
-
-    private static String getValidChoice(String[] menu, Scanner scanner) {
-        String choice = scanner.nextLine();
-        while (!UtilityHelper.isChoiceValid(menu, choice)) {
-            showMenu(menu);
-            choice = scanner.nextLine();
-        }
-        return choice;
-    }
-
 }

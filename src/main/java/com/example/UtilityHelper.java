@@ -1,8 +1,28 @@
 package com.example;
 
 import java.util.Date;
+import java.util.Scanner;
 
 public class UtilityHelper {
+
+    private UtilityHelper() {}
+
+    public static String[] showMenu(String[] menu) {
+        for (int i = 0; i < menu.length; i++) {
+            System.out.println(String.valueOf(i + 1).concat(". ").concat(menu[i]));
+        }
+        System.out.print("Please select an option: ");
+        return menu;
+    }
+
+    public static String getValidChoice(String[] menu, Scanner scanner) {
+        String choice = scanner.nextLine();
+        while (!UtilityHelper.isChoiceValid(menu, choice)) {
+            showMenu(menu);
+            choice = scanner.nextLine();
+        }
+        return choice;
+    }
     
     public static int[][] parseSeatNumbers(String[] seatNumbers) {
         int[][] result = new int[seatNumbers.length][2];

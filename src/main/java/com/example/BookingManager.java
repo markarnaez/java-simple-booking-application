@@ -4,17 +4,22 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Bookings {
+public class BookingManager {
     private Map<String, Map<String, BookingInfo>> bookingsByShow;
     private Map<String, Integer> ticketCounters;
 
-    public Bookings() {
+    public BookingManager() {
         this.bookingsByShow = new HashMap<>();
         this.ticketCounters = new HashMap<>();
     }
 
     public Map<String, Map<String, BookingInfo>> getBookingsByShow() {
         return this.bookingsByShow;
+    }
+
+    public Map<String, BookingInfo> getAllBookingsForShow(String showId){
+        Map<String, BookingInfo> bookings = getBookingsByShow().get(showId);
+        return bookings != null ? bookings : new HashMap<>();
     }
 
     public void addBooking(String showId, String userId, String seatIdentifier, Date effectivity) {
@@ -39,6 +44,10 @@ public class Bookings {
             }
         }
         return null;
+    }
+
+    public boolean isTicketValid(String showId, String ticketNumber){
+        return ticketCounters.get(showId) <= Integer.valueOf(ticketNumber);
     }
 
     private String generateTicketNumber(String showId) {

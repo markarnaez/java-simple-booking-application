@@ -4,18 +4,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ShowManager {
-     private Map<String, Show> showsLibrary;
-     
-     public ShowManager() {
-         this.showsLibrary = new HashMap<>();
-        }
-        
-    public Map<String, Show> getShowsLibrary() {
-            return showsLibrary;
-        }
+    private Map<String, Show> showsLibrary;
+    private User currentUser;
 
-    public void addShow(String showNumber, Show show) {
-        showsLibrary.put(showNumber, show);
+    public ShowManager() {
+        this.showsLibrary = new HashMap<>();
+        this.currentUser = null;
+    }
+
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public Map<String, Show> getShowsLibrary() {
+        return showsLibrary;
+    }
+
+    public void addShow(Show show) {
+        showsLibrary.put(show.getId(), show);
         show.printShowInfo();
         System.out.println("Show successfully added.");
     }
@@ -48,23 +58,24 @@ public class ShowManager {
         }
     }
 
-    public boolean bookShow(Show selectedShow, String[] selectedSeatsArray, String username){
-        return selectedShow.bookSeat(UtilityHelper.parseSeatNumbers(selectedSeatsArray), username);
+    public boolean bookShow(Show selectedShow, String[] selectedSeatsArray) {
+        return selectedShow.bookSeat(UtilityHelper.parseSeatNumbers(selectedSeatsArray), currentUser.getUsername());
     }
 
-    public void cancelShowBooking(String ticketNumber, String username){
+    public void cancelShowBooking(String ticketNumber) {
         Show selectedShow = showsLibrary.get(ticketNumber.split("-")[0]);
-        selectedShow.cancelBookedSeats(username);
-        // for (Show show : showsLibrary.values()) {
-        //     for ( Map<String, BookingInfo> item: show.getBookings().getBookingsByShow().values()) {
-        //         if(item.containsKey(username) && (item.get(username).getTicketNumber().equals(ticketNumber))){
-        //                 show.cancelBookedSeats(username);
-        //                 return;
-        //         }
-        //     }
-        // }
+        String username = getCurrentUser().getUsername();
+
+        if (selectedShow != null && username != null) {
+            BookingInfo bookingInfo = selectedShow.getAllBookings().get(username);
+            if (bookingInfo != null && bookingInfo.getTicketNumber().equals(ticketNumber)){
+                selectedShow.cancelBookedSeats(username);
+            } else {
+                System.out.println("Booking not found for this ticket " +  ticketNumber);
+            }
+        } else {
+            System.out.println("Show not found for this ticket " + ticketNumber);
+        }
     }
-
-
 
 }

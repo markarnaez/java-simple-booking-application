@@ -8,14 +8,14 @@ public class Show {
     private String id;
     private String title;
     private SeatManager seatManager;
-    private Bookings bookings;
+    private BookingManager bookingManager;
     private int cancellationWindow;
 
     public Show(String id, String title, SeatManager seatManager, int cancellationWindow) {
         this.id = id;
         this.title = title;
         this.seatManager = seatManager;
-        this.bookings = new Bookings();
+        this.bookingManager = new BookingManager();
         this.cancellationWindow = cancellationWindow;
     }
 
@@ -27,8 +27,8 @@ public class Show {
         return this.title;
     }
 
-    public Bookings getBookings() {
-        return this.bookings;
+    public BookingManager getBookingManager() {
+        return this.bookingManager;
     }
 
     public SeatManager getSeatManager() {
@@ -38,6 +38,10 @@ public class Show {
     public int getCancellationWindow() {
         return this.cancellationWindow;
     }
+
+    public Map<String, BookingInfo> getAllBookings() {
+        return bookingManager.getAllBookingsForShow(id);
+    } 
 
     public boolean bookSeat(int[][] selectedSeats, String username) {
         boolean allBookedSeatsIsAvailable = seatManager.isSeatAvailable(selectedSeats);
@@ -52,7 +56,7 @@ public class Show {
                 }
             }
             seatIdentifier = seatIdentifier.substring(1);
-            bookings.addBooking(this.id, username, seatIdentifier, UtilityHelper.getDateXminutesFromNow(cancellationWindow));
+            bookingManager.addBooking(this.id, username, seatIdentifier, UtilityHelper.getDateXminutesFromNow(cancellationWindow));
         } else {
             System.out.println("One or more selected seats are not available.");
         }
@@ -65,7 +69,7 @@ public class Show {
     }
 
     public void cancelBookedSeats(String username){
-        BookingInfo info = bookings.getBookingInfoForUser(this.getId(), username);
+        BookingInfo info = bookingManager.getBookingInfoForUser(this.getId(), username);
         String bookedSeats = info.getSeatIdentifier();
         Date effectivity = info.getEffectivity();
         if (effectivity.after(new Date())) {
@@ -73,7 +77,7 @@ public class Show {
             for (int[] bookedSeat : bookedSeatsArray) {
                 seatManager.clearSeat(bookedSeat[0], bookedSeat[1]);
             }
-            bookings.cancelBooking(this.getId(), username);
+            bookingManager.cancelBooking(this.getId(), username);
             System.out.println("Booking cancelled successfully.");
         } else {
             System.out.println("Cannot cancel booking, cancellation period reached.");
@@ -81,10 +85,10 @@ public class Show {
     }
 
     public void printShowInfo() {
-        System.out.println("Show Number: " + this.getId());
-        System.out.println("Title: " + this.getTitle());
-        System.out.println("Seat Size: " + this.seatManager.getSeatsSize());
-        System.out.println("Cancellation Window: " + this.getCancellationWindow());
+        System.out.println("Show Number         : " + this.getId());
+        System.out.println("Title               : " + this.getTitle());
+        System.out.println("Seat Size           : " + this.seatManager.getSeatsSize());
+        System.out.println("Cancellation Window : " + this.getCancellationWindow());
         displaySeatingArrangement();
     }
 
@@ -116,22 +120,13 @@ public class Show {
             }
             System.out.println();
         }
-        System.out.println();
         System.out.println("Available Seat: " + this.seatManager.getAvailableSeatCount());
     }
 
-    public boolean canBookShow(String bookingUsername) {
+    public boolean canBookShow(String username) {
         if (seatManager.getAvailableSeatCount() <= 0) {
             return false;
         }
-
-        if (getBookings().getBookingsByShow().containsKey(this.getId())) {
-            Map<String, BookingInfo> bookings = getBookings().getBookingsByShow()
-                    .get(this.getId());
-            return !bookings.containsKey(bookingUsername);
-        }
-
-        return true;
+        return !getAllBookings().containsKey(username);
     }
-
 }

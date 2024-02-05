@@ -27,14 +27,4 @@ public class Seat {
         this.booked = booked;
     }
 
-    @Override
-    public String toString() {
-        return "Seat{" +
-                "row=" + row +
-                ", column=" + column +
-                ", booked=" + booked +
-                '}';
-    //TODO conver this to A1,A2 format
-    }
-
 }

@@ -33,11 +33,11 @@ public class BookingInfo {
 
     @Override
     public String toString() {
-        return "Booking Info {" +
-                "User Id :'" + this.userId + '\'' +
-                ", Ticker Number :'" + this.ticketNumber + '\'' +
-                ", Booked Seats :'" + this.seatIdentifier + '\'' +
-                ", Effective Date :'" + this.effectivity + '\'' +
-                '}';
+        return "Booking Info - " +
+                "User Id : '" + this.userId + '\'' +
+                ", Ticker Number : '" + this.ticketNumber + '\'' +
+                ", Booked Seats : '" + this.seatIdentifier + '\'' +
+                ", Effective Date : '" + this.effectivity + '\''
+                ;
     }
 }

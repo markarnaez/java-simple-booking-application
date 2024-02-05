@@ -1,18 +1,18 @@
 package com.example;
 
-import java.util.Scanner;
+import java.io.Console;
 
 public class BuyerUser extends User {
-    private static final boolean IS_ADMIN = false;
-    private static final String[] BUYER_MENU = { 
-        "List shows", 
-        "Display show", 
-        "Book show", 
-        "Cancel booking",
-        "Logout" };
+    private static final String[] BUYER_MENU = {
+            "List shows",
+            "Display show",
+            "Book show",
+            "Cancel booking",
+            "Logout" };
 
     public BuyerUser(ShowManager showManager) {
-        super(showManager, BUYER_MENU, IS_ADMIN);
+        super(showManager);
+        this.menu = BUYER_MENU;
     }
 
     @Override
@@ -24,40 +24,18 @@ public class BuyerUser extends User {
     }
 
     @Override
-    public boolean invokeAction(String action) {
-        Scanner scanner = new Scanner(System.in);
-        boolean logout = false;
-        String selectedShowNumber = null;
-        Show selectedShow = null;
-        switch (action) {
-            case "1":
-                System.out.println("List of Shows");
-                showManager.displayShowList();
-                break;
-            case "2":
-                System.out.println("View Show");
-                viewShow(scanner);
-                break;
-            case "3":
-                System.out.println("Book Show");
-                bookShow(scanner, this.username);
-                break;
-            case "4":
-                System.out.println("Cancel Booking");
-                cancelShow(scanner, this.username);
-                break;
-            case "5":
-                System.out.println("Bye!");
-                logout = true;
-                break;
+    public boolean login() {
+        Console console = System.console();
+        System.out.print("Enter username: ");
+        String inputUsername = console.readLine();
+    
+        if (inputUsername != null && inputUsername.matches("\\d{11}")) {
+            setUsername(inputUsername);
+            return true;
+        } else {
+            System.out.println("Invalid username format. Username must be an 11-digit number.");
+            return false;
         }
-
-        return logout;
-    }
-
-    @Override
-    public void displayShow(Show selectedShow) {
-        selectedShow.displaySeatingArrangement();
     }
 
 }
