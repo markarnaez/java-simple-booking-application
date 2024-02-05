@@ -19,7 +19,8 @@ public class AdminActionsFactory implements ActionsFactory {
         actionMap.put("1", () -> new ListShowsAction(showManager));
         actionMap.put("2", () -> new SetupShowAction(showManager));
         actionMap.put("3", () -> new AdminViewShowAction(showManager));
-        actionMap.put("4", () -> new LogoutAction(user));
+        actionMap.put("4", () -> new RemoveShowAction(showManager));
+        actionMap.put("5", () -> new LogoutAction(user));
     }
 
     @Override

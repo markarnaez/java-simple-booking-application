@@ -14,6 +14,7 @@ public class AdminUser extends User {
             "List shows",
             "Setup show",
             "View show",
+            "Remove show",
             "Logout" };
 
     public AdminUser(ShowManager showManager) {
