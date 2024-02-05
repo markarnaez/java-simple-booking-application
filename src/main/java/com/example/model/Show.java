@@ -14,12 +14,17 @@ public class Show {
     private SeatManager seatManager;
     private BookingManager bookingManager;
     private int cancellationWindow;
+    private static final int MAX_CANCELLATION_WINDOW = 2880; //2days
 
     public Show(String id, String title, SeatManager seatManager, int cancellationWindow) {
         this.id = id;
         this.title = title;
         this.seatManager = seatManager;
         this.bookingManager = new BookingManager();
+
+        if (cancellationWindow < 0 || cancellationWindow > MAX_CANCELLATION_WINDOW) {
+            throw new IllegalArgumentException("Cancellation window must be from 0 to " + MAX_CANCELLATION_WINDOW);
+        }
         this.cancellationWindow = cancellationWindow;
     }
 
