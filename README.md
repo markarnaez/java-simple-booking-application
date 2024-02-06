@@ -51,3 +51,4 @@ Commands to be implemented for Buyer :
 7. Admin cannot update an existing show however can remove it without constraints.
 8. Maximum cancellation window value is 2880 mins (2 days).
 9. Buyer username is a 5-digit input (serves as phone#).
+10. This application is not a multi-threaded application.
